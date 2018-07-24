@@ -15,14 +15,16 @@
    _LOWER,
    _RAISE,
    _ADJUST,
-   NAV_LAYER
- };
+   _NAV_LAYER,
+   _SYSTEM
+  };
 
  enum planck_keycodes {
    QWERTY = SAFE_RANGE,
    DATA,
    LOWER,
-   RAISE
+   RAISE,
+   SYSTEM
  };
 
 #define _______ KC_TRNS
@@ -44,9 +46,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 [_QWERTY] = {
   {KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSPC},
-  {KC_ESC,  KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,    LT(NAV_LAYER,KC_SCLN), KC_QUOT},
+  {KC_ESC,  KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,    LT(_NAV_LAYER,KC_SCLN), KC_QUOT},
   {KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_ENT },
-  {_______, KC_LCTL, KC_LALT, KC_LGUI, LOWER,   KC_SPC,  KC_SPC,  RAISE,   KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT}
+  { SYSTEM, KC_LCTL, KC_LALT, KC_LGUI, LOWER,   KC_SPC,  KC_SPC,  RAISE,   KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT}
 },
 
 /* Lower
@@ -75,7 +77,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------|------+------+------+------+------+------|
  * |      |  F9  |  F10 |  F11 |  F12 |      |   +  |   -  |   1  |   2  |   3  |      |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * |      |      |      |      |      |             |      |   0  |   .  |Shift |Enter |
+ * |      |      |      |      |      |   DELETE    |      |   0  |   .  |Shift |Enter |
  * `-----------------------------------------------------------------------------------'
  */
 [_RAISE] = {
@@ -86,24 +88,44 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 },
 
 /* Directional navigation layer
-   *
-   *         Large movements -----/```````````````````\   /```````````````````\----- Vim-style arrow keys
-   *                ┌─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┐
-   *                │     │     │     │     │     │     │     │     │     │     │     │     │
-   *                ├─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┤
-   *                │     │     │Home │PgUp │PgDn │ End │  ←  │  ↓  │  ↑  │  →  │     │     │
-   *                ├─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┤
-   *                │     │     │     │     │     │     │     │     │     │     │     │     │
-   *                ├─────┼─────┼─────┼─────┼─────┼─────┴─────┼─────┼─────┼─────┼─────┼─────┤
-   *                │     │     │     │     │     │           │     │     │     │     │     │
-   *                └─────┴─────┴─────┴─────┴─────┴───────────┴─────┴─────┴─────┴─────┴─────┘
-   */
-  [NAV_LAYER] = {
-    {___x___, ___x___, ___x___, ___x___, ___x___, ___x___, ___x___, ___x___, ___x___, ___x___, ___x___,                ___x___},
-    {_______, ___x___, KC_HOME, KC_PGUP, KC_PGDN, KC_END,  KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, LT(NAV_LAYER, KC_SCLN), _______},
-    {_______, ___x___, ___x___, ___x___, ___x___, ___x___, ___x___, ___x___, ___x___, ___x___, ___x___,                _______},
-    {_______, _______, _______, _______, ___x___, ___x___, ___x___, ___x___, _______, _______, _______,                _______}
-  },
+ *
+ *         Large movements -----/```````````````````\   /```````````````````\----- Vim-style arrow keys
+ *                ┌─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┐
+ *                │     │     │     │     │     │     │     │     │     │     │     │     │
+ *                ├─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┤
+ *                │     │     │Home │PgUp │PgDn │ End │  ←  │  ↓  │  ↑  │  →  │     │     │
+ *                ├─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┤
+ *                │     │     │     │     │     │     │     │     │     │     │     │     │
+ *                ├─────┼─────┼─────┼─────┼─────┼─────┴─────┼─────┼─────┼─────┼─────┼─────┤
+ *                │     │     │     │     │     │           │     │     │     │     │     │
+ *                └─────┴─────┴─────┴─────┴─────┴───────────┴─────┴─────┴─────┴─────┴─────┘
+ */
+[_NAV_LAYER] = {
+  {___x___, ___x___, ___x___, ___x___, ___x___, ___x___, ___x___, ___x___, ___x___, ___x___, ___x___,                ___x___},
+  {_______, ___x___, KC_HOME, KC_PGUP, KC_PGDN, KC_END,  KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, LT(NAV_LAYER, KC_SCLN), _______},
+  {_______, ___x___, ___x___, ___x___, ___x___, ___x___, ___x___, ___x___, ___x___, ___x___, ___x___,                _______},
+  {_______, _______, _______, _______, ___x___, ___x___, ___x___, ___x___, _______, _______, _______,                _______}
+},
+
+
+/* System layer
+ *
+ *                ┌─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┐
+ *                │     │     │     │     │     │     │     │     │     │     │     │     │
+ *                ├─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┤
+ *                │     │     │Home │PgUp │PgDn │ End │  ←  │  ↓  │  ↑  │  →  │     │     │
+ *                ├─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┤
+ *                │     │     │     │     │     │     │     │     │     │     │     │     │
+ *                ├─────┼─────┼─────┼─────┼─────┼─────┴─────┼─────┼─────┼─────┼─────┼─────┤
+ *                │     │     │     │     │     │           │     │     │     │     │     │
+ *                └─────┴─────┴─────┴─────┴─────┴───────────┴─────┴─────┴─────┴─────┴─────┘
+ */
+[_SYSTEM] = {
+  {___x___, ___x___, ___x___, ___x___, ___x___, ___x___, ___x___, ___x___, ___x___, ___x___, ___x___,                ___x___},
+  {_______, ___x___, KC_HOME, KC_PGUP, KC_PGDN, KC_END,  KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, LT(NAV_LAYER, KC_SCLN), _______},
+  {_______, ___x___, ___x___, ___x___, ___x___, ___x___, ___x___, ___x___, ___x___, ___x___, ___x___,                _______},
+  {_______, _______, _______, _______, ___x___, ___x___, ___x___, ___x___, _______, _______, _______,                _______}
+},
 
 /* Adjust (Lower + Raise)
  * ,-----------------------------------------------------------------------------------.
@@ -139,13 +161,13 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         uint8_t default_layer = biton32(default_layer_state);
         if (default_layer == _QWERTY) {
         }
-        update_tri_layer(_LOWER, _RAISE, _ADJUST);
+        update_tri_layer(_LOWER, _RAISE, _ADJUST, _SYSTEM);
       } else {
         layer_off(_LOWER);
         uint8_t default_layer = biton32(default_layer_state);
         if (default_layer == _QWERTY) {
         }
-        update_tri_layer(_LOWER, _RAISE, _ADJUST);
+        update_tri_layer(_LOWER, _RAISE, _ADJUST, _SYSTEM);
       }
       return false;
       break;
@@ -155,16 +177,31 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         uint8_t default_layer = biton32(default_layer_state);
         if (default_layer == _QWERTY) {
         }
-        update_tri_layer(_LOWER, _RAISE, _ADJUST);
+        update_tri_layer(_LOWER, _RAISE, _ADJUST, _SYSTEM);
       } else {
         layer_off(_RAISE);
         uint8_t default_layer = biton32(default_layer_state);
         if (default_layer == _QWERTY) {
         }
-        update_tri_layer(_LOWER, _RAISE, _ADJUST);
+        update_tri_layer(_LOWER, _RAISE, _ADJUST, _SYSTEM);
       }
       return false;
       break;
+    case SYSTEM:
+      if (record->event.pressed) {
+        layer_on(_SYSTEM);
+        uint8_t default_layer = biton32(default_layer_state);
+        if (default_layer == _QWERTY) {
+        }
+        update_tri_layer(_LOWER, _RAISE, _ADJUST, _SYSTEM);
+      } else {
+        layer_off(_SYSTEM);
+        uint8_t default_layer = biton32(default_layer_state);
+        if (default_layer == _QWERTY) {
+        }
+        update_tri_layer(_LOWER, _RAISE, _ADJUST, _SYSTEM);
+      }
+      return false;
   }
   return true;
 }   
