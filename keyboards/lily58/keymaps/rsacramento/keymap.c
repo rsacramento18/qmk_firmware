@@ -12,25 +12,25 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 /* QWERTY
  * ,-----------------------------------------.                    ,-----------------------------------------.
- * | ESC  |   1  |   2  |   3  |   4  |   5  |                    |   6  |   7  |   8  |   9  |   0  |  `   |
+ * |   !  |   +  |   [  |   {  |   (  |   &  |                    |   =  |   )  |   }  |   ]  |   *  |  '   |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
- * | Tab  |   Q  |   W  |   E  |   R  |   T  |                    |   Y  |   U  |   I  |   O  |   P  |  -   |
+ * | Tab  |   q  |   w  |   e  |   r  |   t  |                    |   y  |   u  |   i  |   o  |   p  |  ´   |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
- * |LCTRL |   A  |   S  |   D  |   F  |   G  |-------.    ,-------|   H  |   J  |   K  |   L  |   ;  |  '   |
+ * | ESC  |   a  |   s  |   d  |   f  |   g  |-------.    ,-------|   h  |   j  |   k  |   l  |   ç  |  ~   |
  * |------+------+------+------+------+------|   [   |    |    ]  |------+------+------+------+------+------|
- * |LShift|   Z  |   X  |   C  |   V  |   B  |-------|    |-------|   N  |   M  |   ,  |   .  |   /  |RShift|
+ * |LShift|   z  |   x  |   c  |   v  |   b  |-------|    |-------|   n  |   m  |   ,  |   .  |   -  |LShift|
  * `-----------------------------------------/       /     \      \-----------------------------------------'
- *                   | LAlt | LGUI |LOWER | /Space  /       \Enter \  |RAISE |BackSP| RGUI |
+ *                   | LAlt | LGUI |Delete | /BackSP /       \Space \  |Enter  |BackSP| RGUI |
  *                   |      |      |      |/       /         \      \ |      |      |      |
  *                   `----------------------------'           '------''--------------------'
  */
 
  [_QWERTY] = LAYOUT(
-  KC_EXLM,  KC_PLUS, KC_LBRC, KC_LCBR, KC_LPRN, KC_AMPR,                 KC_EQL, KC_RPRN, KC_RCBR, KC_RBRC, KC_ASTR, KC_QUOT,
-  KC_TAB,   KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                    KC_Y,   KC_U,    KC_I,    KC_O,    KC_P,    PT_ACUT,
-  KC_ESC,  KC_A,   KC_S,    KC_D,    KC_F,    KC_G,                     KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, PT_TILD,
-  KC_LSFT,  KC_Z,   KC_X,    KC_C,    KC_V,    KC_B, KC_LALT,  KC_LCTRL,  KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH,  KC_RSFT,
-                        KC_LALT, KC_LGUI, MO(_LOWER), KC_BSPC, KC_SPC, MO(_RAISE), KC_ENT, KC_RGUI
+  PT_EXLM,  PT_PLUS, PT_LBRC, PT_LCBR, PT_LPRN, PT_AMPR,                 PT_EQL, PT_RPRN, PT_RCBR, PT_RBRC, PT_ASTR, PT_QUOT,
+  KC_TAB,   PT_Q,    PT_W,    PT_E,    PT_R,    PT_T,                    PT_Y,   PT_U,    PT_I,    PT_O,    PT_P,    PT_ACUT,
+  KC_ESC,   PT_A,    PT_S,    PT_D,    PT_F,    PT_G,                    PT_H,   PT_J,    PT_K,    PT_L,    PT_CCED, PT_TILD,
+  KC_LSFT,  PT_Z,    PT_X,    PT_C,    PT_V,    PT_B, KC_LALT,  KC_ENT,  PT_N,   PT_M,    PT_COMM, PT_DOT,  PT_MINS,  KC_LSFT,
+                          KC_LEFT, KC_RIGHT, KC_LCTL, KC_BSPC,  KC_SPC,  KC_ENT, KC_DOWN, KC_UP
 ),
 /* LOWER
  * ,-----------------------------------------.                    ,-----------------------------------------.
@@ -148,3 +148,29 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   }
   return true;
 }
+
+const key_override_t one_key_override = ko_make_basic(MOD_MASK_SHIFT, PT_PLUS, PT_1);
+const key_override_t two_key_override = ko_make_basic(MOD_MASK_SHIFT, PT_LBRC, PT_2);
+const key_override_t three_key_override = ko_make_basic(MOD_MASK_SHIFT, PT_LCBR, PT_3);
+const key_override_t four_key_override = ko_make_basic(MOD_MASK_SHIFT, PT_LPRN, PT_4);
+const key_override_t five_key_override = ko_make_basic(MOD_MASK_SHIFT, PT_AMPR, PT_5);
+const key_override_t six_key_override = ko_make_basic(MOD_MASK_SHIFT, PT_EQL, PT_6);
+const key_override_t seven_key_override = ko_make_basic(MOD_MASK_SHIFT, PT_RPRN, PT_7);
+const key_override_t eight_key_override = ko_make_basic(MOD_MASK_SHIFT, PT_RCBR, PT_8);
+const key_override_t nine_key_override = ko_make_basic(MOD_MASK_SHIFT, PT_RBRC, PT_9);
+const key_override_t zero_key_override = ko_make_basic(MOD_MASK_SHIFT, PT_ASTR, PT_0);
+
+// This globally defines all key overrides to be used
+const key_override_t **key_overrides = (const key_override_t *[]){
+    &one_key_override,
+    &two_key_override,
+    &three_key_override,
+    &four_key_override,
+    &five_key_override ,
+    &six_key_override,
+    &seven_key_override,
+    &eight_key_override,
+    &nine_key_override,
+    &zero_key_override,
+    NULL
+};
