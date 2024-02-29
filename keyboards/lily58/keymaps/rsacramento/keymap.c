@@ -28,7 +28,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  [_QWERTY] = LAYOUT(
   PT_EXLM,  PT_PLUS, PT_LBRC, PT_LCBR, PT_LPRN, PT_AMPR,                 PT_EQL, PT_RPRN, PT_RCBR, PT_RBRC, PT_ASTR, PT_QUOT,
   KC_TAB,   PT_Q,    PT_W,    PT_E,    PT_R,    PT_T,                    PT_Y,   PT_U,    PT_I,    PT_O,    PT_P,    PT_ACUT,
-  KC_ESC,   PT_A,    PT_S,    PT_D,    PT_F,    PT_G,                    PT_H,   PT_J,    PT_K,    PT_L,    PT_CCED, PT_TILD,
+  KC_ESC,   PT_A,    PT_S,    PT_D, LT(_RAISE,PT_F), PT_G,                    PT_H,   PT_J,    PT_K,    PT_L,    PT_CCED, PT_TILD,
   KC_LSFT,  PT_Z,    PT_X,    PT_C,    PT_V,    PT_B, KC_LCTL,  KC_LCTL,  PT_N,   PT_M,    PT_COMM, PT_DOT,  PT_MINS,  KC_LSFT,
                        PT_BSLS , PT_RABK, KC_BSPC, MO(_LOWER),  KC_ENT,  KC_SPC, PT_SLSH, PT_PERC
 ),
@@ -71,7 +71,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [_RAISE] = LAYOUT(
   _______, _______, _______, _______, _______, _______,                     _______, _______, _______, _______, _______, _______,
   KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                        KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    _______,
-  KC_F1,  KC_F2,    KC_F3,   KC_F4,   KC_F5,   KC_F6,                       XXXXXXX, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, XXXXXXX,
+  KC_F1,  KC_F2,    KC_F3,   KC_F4,   KC_F5,   KC_F6,                       KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT,  XXXXXXX, XXXXXXX,
   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,   _______, _______,  KC_PLUS, KC_MINS, KC_EQL,  KC_LBRC, KC_RBRC, KC_BSLS,
                              _______, _______, _______,  _______, _______,  _______, _______, _______
 ),
@@ -159,6 +159,8 @@ const key_override_t seven_key_override = ko_make_basic(MOD_MASK_SHIFT, PT_RPRN,
 const key_override_t eight_key_override = ko_make_basic(MOD_MASK_SHIFT, PT_RCBR, PT_8);
 const key_override_t nine_key_override = ko_make_basic(MOD_MASK_SHIFT, PT_RBRC, PT_9);
 const key_override_t zero_key_override = ko_make_basic(MOD_MASK_SHIFT, PT_ASTR, PT_0);
+const key_override_t dquo_key_override = ko_make_basic(MOD_MASK_SHIFT, PT_SLSH, PT_DQUO);
+const key_override_t pound_key_override = ko_make_basic(MOD_MASK_SHIFT, PT_PERC, PT_DLR);
 
 // This globally defines all key overrides to be used
 const key_override_t **key_overrides = (const key_override_t *[]){
