@@ -17,10 +17,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * | Tab  |   q  |   w  |   e  |   r  |   t  |                    |   y  |   u  |   i  |   o  |   p  |  ´   |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
  * | ESC  |   a  |   s  |   d  |   f  |   g  |-------.    ,-------|   h  |   j  |   k  |   l  |   ç  |  ~   |
- * |------+------+------+------+------+------|   [   |    |    ]  |------+------+------+------+------+------|
+ * |------+------+------+------+------+------| Ctrl  |    |  Ctrl |------+------+------+------+------+------|
  * |LShift|   z  |   x  |   c  |   v  |   b  |-------|    |-------|   n  |   m  |   ,  |   .  |   -  |LShift|
  * `-----------------------------------------/       /     \      \-----------------------------------------'
- *                   | LAlt | LGUI |Delete | /BackSP /       \Space \  |Enter  |BackSP| RGUI |
+ *                   | LAlt | LGUI |BackSP | /Alt   /       \Enter \  |Space |BackSP| RGUI |
  *                   |      |      |      |/       /         \      \ |      |      |      |
  *                   `----------------------------'           '------''--------------------'
  */
@@ -29,28 +29,28 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   PT_EXLM,  PT_PLUS, PT_LBRC, PT_LCBR, PT_LPRN, PT_AMPR,                 PT_EQL, PT_RPRN, PT_RCBR, PT_RBRC, PT_ASTR, PT_QUOT,
   KC_TAB,   PT_Q,    PT_W,    PT_E,    PT_R,    PT_T,                    PT_Y,   PT_U,    PT_I,    PT_O,    PT_P,    PT_ACUT,
   KC_ESC,   PT_A,    PT_S,    PT_D,    PT_F,    PT_G,                    PT_H,   PT_J,    PT_K,    PT_L,    PT_CCED, PT_TILD,
-  KC_LSFT,  PT_Z,    PT_X,    PT_C,    PT_V,    PT_B, KC_LALT,  KC_ENT,  PT_N,   PT_M,    PT_COMM, PT_DOT,  PT_MINS,  KC_LSFT,
-                          KC_LEFT, KC_RIGHT, KC_LCTL, KC_BSPC,  KC_SPC,  KC_ENT, KC_DOWN, KC_UP
+  KC_LSFT,  PT_Z,    PT_X,    PT_C,    PT_V,    PT_B, KC_LCTL,  KC_LCTL,  PT_N,   PT_M,    PT_COMM, PT_DOT,  PT_MINS,  KC_LSFT,
+                       PT_BSLS , PT_RABK, KC_BSPC, MO(_LOWER),  KC_ENT,  KC_SPC, PT_SLSH, PT_PERC
 ),
 /* LOWER
  * ,-----------------------------------------.                    ,-----------------------------------------.
- * |      |      |      |      |      |      |                    |      |      |      |      |      |      |
+ * |      |ALT(1)|ALT(2)|ALT(3)|ALT(4)|ALT(5)|                    |ALT(6)|ALT(7)|ALT(8)|ALT(9)|ALT(0)|ALT(')|
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
- * |  F1  |  F2  |  F3  |  F4  |  F5  |  F6  |                    |  F7  |  F8  |  F9  | F10  | F11  | F12  |
+ * |  Tab |ALT(q)|ALT(w)|ALT(e)|ALT(r)|ALT(t)|                    |ALT(y)|ALT(u)|ALT(i)|ALT(o)|ALT(p)|      |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
- * |   `  |   !  |   @  |   #  |   $  |   %  |-------.    ,-------|   ^  |   &  |   *  |   (  |   )  |   -  |
- * |------+------+------+------+------+------|   [   |    |    ]  |------+------+------+------+------+------|
- * |      |      |      |      |      |      |-------|    |-------|      |   _  |   +  |   {  |   }  |   |  |
+ * | Esc  |ALT(a)|ALT(s)|ALT(d)|ALT(f)|ALT(g)|-------.    ,-------|ALT(h)|ALT(j)|ALT(k)|ALT(l)|ALT(ç)|   -  |
+ * |------+------+------+------+------+------| Ctrl  |    |  Ctrl |------+------+------+------+------+------|
+ * |LShift|ALT(z)|ALT(x)|ALT(c)|ALT(v)|ALT(b)|-------|    |-------|ALT(n)|ALT(m)|ALT(,)|ALT(.)|ALT(-)|   |  |
  * `-----------------------------------------/       /     \      \-----------------------------------------'
  *                   | LAlt | LGUI |LOWER | /Space  /       \Enter \  |RAISE |BackSP| RGUI |
  *                   |      |      |      |/       /         \      \ |      |      |      |
  *                   `----------------------------'           '------''--------------------'
  */
 [_LOWER] = LAYOUT(
-  _______, _______, _______, _______, _______, _______,                   _______, _______, _______,_______, _______, _______,
-  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,                     KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,
-  KC_GRV, KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC,                   KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, KC_TILD,
-  _______, _______, _______, _______, _______, _______, _______, _______, XXXXXXX, KC_UNDS, KC_PLUS, KC_LCBR, KC_RCBR, KC_PIPE,
+  _______, LALT(PT_1), LALT(PT_2), LALT(PT_3), LALT(PT_4), LALT(PT_5),                   LALT(PT_6), LALT(PT_7), LALT(PT_8), LALT(PT_9), LALT(PT_0),    LALT(PT_QUOT),
+  _______, LALT(PT_Q), LALT(PT_W), LALT(PT_E), LALT(PT_R), LALT(PT_T),                   LALT(PT_Y), LALT(PT_U), LALT(PT_I), LALT(PT_O), LALT(PT_P),    _______,
+  _______, LALT(PT_A), LALT(PT_S), LALT(PT_D), LALT(PT_F), LALT(PT_G),                   LALT(PT_H), LALT(PT_J), LALT(PT_K), LALT(PT_L), LALT(PT_CCED), _______,
+  _______, LALT(PT_A), LALT(PT_S), LALT(PT_D), LALT(PT_F), LALT(PT_G), _______, _______, LALT(PT_N), LALT(PT_M), LALT(PT_COMM), LALT(PT_DOT), LALT(PT_MINS), _______,
                              _______, _______, _______, _______, _______,  _______, _______, _______
 ),
 /* RAISE
