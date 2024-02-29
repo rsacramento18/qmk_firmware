@@ -162,6 +162,8 @@ const key_override_t zero_key_override = ko_make_basic(MOD_MASK_SHIFT, PT_ASTR, 
 const key_override_t dquo_key_override = ko_make_basic(MOD_MASK_SHIFT, PT_SLSH, PT_DQUO);
 const key_override_t pound_key_override = ko_make_basic(MOD_MASK_SHIFT, PT_PERC, PT_DLR);
 const key_override_t at_key_override = ko_make_basic(MOD_MASK_SHIFT, PT_EXLM, PT_AT);
+const key_override_t minus_key_override = ko_make_basic(MOD_MASK_SHIFT, PT_RABK, PT_LABK);
+const key_override_t pipe_key_override = ko_make_basic(MOD_MASK_SHIFT, PT_BSLS, PT_PIPE);
 
 // This globally defines all key overrides to be used
 const key_override_t **key_overrides = (const key_override_t *[]){
@@ -178,5 +180,7 @@ const key_override_t **key_overrides = (const key_override_t *[]){
     &dquo_key_override,
     &pound_key_override,
     &at_key_override,
+    &minus_key_override,
+    &pipe_key_override,
     NULL
 };
