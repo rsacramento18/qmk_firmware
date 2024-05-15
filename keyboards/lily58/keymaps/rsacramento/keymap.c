@@ -26,11 +26,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 
  [_QWERTY] = LAYOUT(
-  PT_EXLM,  PT_PLUS, PT_LBRC, PT_LCBR, PT_LPRN, PT_AMPR,                 PT_EQL, PT_RPRN, PT_RCBR, PT_RBRC, PT_ASTR, PT_QUOT,
-  KC_TAB,   PT_Q,    PT_W,    PT_E,    PT_R,    PT_T,                    PT_Y,   PT_U,    PT_I,    PT_O,    PT_P,    PT_ACUT,
-  KC_ESC,   PT_A,    PT_S,    PT_D, LT(_RAISE,PT_F), PT_G,                    PT_H,   PT_J,    PT_K,    PT_L,    PT_CCED, PT_TILD,
-  KC_LSFT,  PT_Z,    PT_X,    PT_C,    PT_V,    PT_B, KC_LCTL,  KC_LCTL,  PT_N,   PT_M,    PT_COMM, PT_DOT,  PT_MINS,  KC_LSFT,
-                       PT_BSLS , PT_RABK, KC_BSPC, MO(_LOWER),  KC_ENT,  KC_SPC, PT_SLSH, PT_PERC
+  PT_LDAQ,  PT_1,    PT_2,    PT_3,    PT_4,             PT_5,                                          PT_6,   PT_7,    PT_8,    PT_9,    PT_0,    PT_QUOT,
+  KC_TAB,   PT_Q,    PT_W,    PT_E,    PT_R,             PT_T,                                          PT_Y,   PT_U,    PT_I,    PT_O,    PT_P,    PT_TILD,
+  KC_ESC,   PT_A,    PT_S,    PT_D,    LT(_RAISE, PT_F), PT_G,                                          PT_H,   PT_J,    PT_K,    PT_L,    PT_CCED, PT_MORD,
+  KC_LSFT,  PT_Z,    PT_X,    PT_C,    PT_V,             PT_B,    KC_LALT,                    KC_RALT,  PT_N,   PT_M,    PT_COMM, PT_DOT,  PT_MINS,  KC_LSFT,
+                              PT_BSLS, PT_LABK,          KC_BSPC, KC_LCTL,                    KC_ENT,   KC_SPC, PT_PLUS, PT_ACUT
 ),
 /* LOWER
  * ,-----------------------------------------.                    ,-----------------------------------------.
@@ -46,13 +46,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                   |      |      |      |/       /         \      \ |      |      |      |
  *                   `----------------------------'           '------''--------------------'
  */
-[_LOWER] = LAYOUT(
-  _______, LALT(PT_1), LALT(PT_2), LALT(PT_3), LALT(PT_4), LALT(PT_5),                   LALT(PT_6), LALT(PT_7), LALT(PT_8), LALT(PT_9), LALT(PT_0),    LALT(PT_QUOT),
-  _______, LALT(PT_Q), LALT(PT_W), LALT(PT_E), LALT(PT_R), LALT(PT_T),                   LALT(PT_Y), LALT(PT_U), LALT(PT_I), LALT(PT_O), LALT(PT_P),    _______,
-  _______, LALT(PT_A), LALT(PT_S), LALT(PT_D), LALT(PT_F), LALT(PT_G),                   LALT(PT_H), LALT(PT_J), LALT(PT_K), LALT(PT_L), LALT(PT_CCED), _______,
-  _______, LALT(PT_A), LALT(PT_S), LALT(PT_D), LALT(PT_F), LALT(PT_G), _______, _______, LALT(PT_N), LALT(PT_M), LALT(PT_COMM), LALT(PT_DOT), LALT(PT_MINS), _______,
+  [_LOWER] = LAYOUT(
+  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
                              _______, _______, _______, _______, _______,  _______, _______, _______
-),
+  ),
 /* RAISE
  * ,-----------------------------------------.                    ,-----------------------------------------.
  * |      |      |      |      |      |      |                    |      |      |      |      |      |      |
@@ -148,39 +148,3 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   }
   return true;
 }
-
-const key_override_t one_key_override = ko_make_basic(MOD_MASK_SHIFT, PT_PLUS, PT_1);
-const key_override_t two_key_override = ko_make_basic(MOD_MASK_SHIFT, PT_LBRC, PT_2);
-const key_override_t three_key_override = ko_make_basic(MOD_MASK_SHIFT, PT_LCBR, PT_3);
-const key_override_t four_key_override = ko_make_basic(MOD_MASK_SHIFT, PT_LPRN, PT_4);
-const key_override_t five_key_override = ko_make_basic(MOD_MASK_SHIFT, PT_AMPR, PT_5);
-const key_override_t six_key_override = ko_make_basic(MOD_MASK_SHIFT, PT_EQL, PT_6);
-const key_override_t seven_key_override = ko_make_basic(MOD_MASK_SHIFT, PT_RPRN, PT_7);
-const key_override_t eight_key_override = ko_make_basic(MOD_MASK_SHIFT, PT_RCBR, PT_8);
-const key_override_t nine_key_override = ko_make_basic(MOD_MASK_SHIFT, PT_RBRC, PT_9);
-const key_override_t zero_key_override = ko_make_basic(MOD_MASK_SHIFT, PT_ASTR, PT_0);
-const key_override_t dquo_key_override = ko_make_basic(MOD_MASK_SHIFT, PT_SLSH, PT_DQUO);
-const key_override_t pound_key_override = ko_make_basic(MOD_MASK_SHIFT, PT_PERC, PT_DLR);
-const key_override_t at_key_override = ko_make_basic(MOD_MASK_SHIFT, PT_EXLM, PT_AT);
-const key_override_t minus_key_override = ko_make_basic(MOD_MASK_SHIFT, PT_RABK, PT_LABK);
-const key_override_t pipe_key_override = ko_make_basic(MOD_MASK_SHIFT, PT_BSLS, PT_PIPE);
-
-// This globally defines all key overrides to be used
-const key_override_t **key_overrides = (const key_override_t *[]){
-    &one_key_override,
-    &two_key_override,
-    &three_key_override,
-    &four_key_override,
-    &five_key_override ,
-    &six_key_override,
-    &seven_key_override,
-    &eight_key_override,
-    &nine_key_override,
-    &zero_key_override,
-    &dquo_key_override,
-    &pound_key_override,
-    &at_key_override,
-    &minus_key_override,
-    &pipe_key_override,
-    NULL
-};
